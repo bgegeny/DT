@@ -14,7 +14,7 @@ app.listen(PORT, () => {
     race = initRace();
 });
 
-app.get("/api", (req, res) => {
+app.get("/api/drivers", (req, res) => {
     res.json({ race });
 });
 

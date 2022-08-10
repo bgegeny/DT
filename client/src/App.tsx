@@ -1,30 +1,19 @@
 import React from 'react';
-import { Driver } from "../../server/models/driver";
-import DriverItem from "./components/Driver";
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import DriverPage from "./components/DriverPage";
 
-function App() {
-  const [data, setData] = React.useState<Driver[]>([]);
+const App = () => {
 
-  React.useEffect(() => {
-    fetch("/api")
-        .then((res) => res.json())
-        .then((data) => setData(data.race));
-  }, []);
-
-  return (
-      <div className="App">
-        <div
-            className="drivers"
-        >
-          {data.length && data.map((item) =>
-                <DriverItem
-                    key={item.id}
-                    driver={item}
-                />
-          )}
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/drivers" element={<DriverPage />} />
+                    <Route path="*" element={<Navigate to="/drivers" />} />
+                </Routes>
+            </BrowserRouter>
         </div>
-      </div>
-  );
+    );
 }
 
 export default App;
