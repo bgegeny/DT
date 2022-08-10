@@ -8,7 +8,7 @@ interface IMyProps {
 
 const DriverItem: React.FC<IMyProps> = (props: IMyProps) => {
 
-    const { id, firstname, lastname, team, code, place } = props.driver;
+    const { id, firstname, lastname, team, code, place, country } = props.driver;
 
     const overtake = (driverId: number) => {
         fetch(`/api/drivers/overtake`, {
@@ -32,13 +32,21 @@ const DriverItem: React.FC<IMyProps> = (props: IMyProps) => {
             <div>{team}</div>
             <div className="bold">{place + 1}. place</div>
             <div>{code}</div>
-            <div>
+            <img
+                alt={`Portrait from ${firstname} ${lastname}`}
+                className='driver_portrait'
+                src={`../../images/portraits/${code.toLowerCase()}.png`}
+            />
+            <div
+                className="flag-container"
+            >
                 <img
-                    alt={`Portrait from ${firstname} ${lastname}`}
-                    className='driver_portrait'
-                    src={`../../images/portraits/${code.toLowerCase()}.png`}
+                    alt={`flag for country: ${country}`}
+                    className="flag"
+                    src={`https://countryflagsapi.com/png/${country}`}
                 />
             </div>
+
             <button
                 disabled={!place}
                 onClick={() => {
