@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import DriverPage from "./components/DriverPage";
 
 const App = () => {
-
     return (
         <div className="App">
             <BrowserRouter>

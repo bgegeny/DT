@@ -1,27 +1,48 @@
-import DriverItem from './Driver';
+import DriverItem from './DriverItem';
 import React, { useState, useEffect } from 'react';
+import './style/DriverPage.css';
 
 
 const DriverPage = () => {
-    const [data, setData] = useState([]);
+    const [drivers, setDrivers] = useState([]);
 
-    useEffect(() => {
+    const getDrivers = () => {
         fetch("/api/drivers")
             .then((res) => res.json())
-            .then((data) => setData(data.race));
+            .then((data) => setDrivers(data.race));
+    }
+
+    useEffect(() => {
+        getDrivers();
     }, []);
 
     return (
-        <div
-            className="drivers"
-        >
-            {data.length && data.map((item) =>
-                <DriverItem
-                    key={item.id}
-                    driver={item}
+        <>
+            <header
+            >
+                <img
+                    alt="Digital Thinkers Logo"
+                    src="../../images/DT_header.png"
                 />
-            )}
-        </div>
+                <div>
+                    Test Exercise
+                </div>
+            </header>
+            <div
+                className="drivers"
+            >
+                {drivers.length && drivers.map((item) =>
+                    <DriverItem
+                        onChange={() => getDrivers()}
+                        key={item.id}
+                        driver={item}
+                    />
+                )}
+            </div>
+            <footer>
+                Created By Benjamin Gégény
+            </footer>
+        </>
     );
 }
 
