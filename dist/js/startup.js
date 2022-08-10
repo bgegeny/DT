@@ -10,7 +10,7 @@ const driver_1 = require("./models/driver");
 const initRace = () => {
     const currentRacers = [];
     underscore_1.default.shuffle(drivers_json_1.default).forEach((driver, i) => {
-        currentRacers.push(new driver_1.Driver(driver, i + 1));
+        currentRacers.push(new driver_1.Driver(driver, i));
     });
     return currentRacers;
 };

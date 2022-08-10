@@ -6,7 +6,7 @@ export const initRace = () => {
     const currentRacers: Driver[] = [];
 
     _.shuffle(drivers).forEach((driver, i: number) => {
-        currentRacers.push(new Driver(driver, i + 1));
+        currentRacers.push(new Driver(driver, i));
     });
 
     return currentRacers;
