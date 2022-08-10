@@ -4,6 +4,7 @@ import './style/Driver.css';
 
 interface IMyProps {
     driver: Driver;
+    onChange: () => void;
 }
 
 const DriverItem: React.FC<IMyProps> = (props: IMyProps) => {
@@ -16,6 +17,8 @@ const DriverItem: React.FC<IMyProps> = (props: IMyProps) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({driverId})
+        }).then(() => {
+            props.onChange();
         });
     }
 
