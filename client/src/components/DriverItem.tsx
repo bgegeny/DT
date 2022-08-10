@@ -17,7 +17,10 @@ const DriverItem: React.FC<IMyProps> = (props: IMyProps) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({driverId})
-        }).then(() => {
+        }).then((data) => {
+            if(!data.ok) {
+                throw Error();
+            }
             props.onChange();
         });
     }
@@ -27,7 +30,7 @@ const DriverItem: React.FC<IMyProps> = (props: IMyProps) => {
             <div>{`${props.driver.firstname} ${props.driver.lastname}`}</div>
             <div>{props.driver.team}</div>
             <div>{props.driver.code}</div>
-            <div className="bold">{props.driver.place +1 }</div>
+            <div className="bold">{props.driver.place + 1}. place</div>
             <div>
                 <img
                     alt={`Portrait from ${props.driver.firstname} ${props.driver.lastname}`}
@@ -35,17 +38,15 @@ const DriverItem: React.FC<IMyProps> = (props: IMyProps) => {
                     src={`../../images/${props.driver.code.toLowerCase()}.png`}
                 />
             </div>
-            {
-                props.driver.place ?
+            <button
+                disabled={!props.driver.place}
+                onClick={() => {
+                    overtake(props.driver.id);
+                }}
+            >
+                Overtake
+            </button>
 
-                    <button
-                        onClick={() => {
-                            overtake(props.driver.id);
-                        }}
-                    >
-                        Overtake
-                    </button> : undefined
-            }
 
 
         </div>

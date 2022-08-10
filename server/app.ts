@@ -25,7 +25,6 @@ app.get("/api/drivers", (req, res) => {
 });
 
 app.post("/api/drivers/overtake", (req, res) => {
-    console.log(req.body.driverId)
     const driverIndex = _.findIndex(race, function(driver) { return driver.id == req.body.driverId });
 
     if(driverIndex !== 0) {
@@ -34,4 +33,6 @@ app.post("/api/drivers/overtake", (req, res) => {
     }
 
     race = _.sortBy(race, function(driver) { return driver.place; })
+
+    res.sendStatus(200);
 });
