@@ -1,6 +1,5 @@
 import React from 'react';
 import { Driver } from '../../../server/models/driver';
-import './style/Driver.css';
 
 interface IMyProps {
     driver: Driver;
@@ -8,6 +7,8 @@ interface IMyProps {
 }
 
 const DriverItem: React.FC<IMyProps> = (props: IMyProps) => {
+
+    const { id, firstname, lastname, team, code, place } = props.driver;
 
     const overtake = (driverId: number) => {
         fetch(`/api/drivers/overtake`, {
@@ -27,28 +28,25 @@ const DriverItem: React.FC<IMyProps> = (props: IMyProps) => {
 
     return (
         <div className="driver center">
-            <div>{`${props.driver.firstname} ${props.driver.lastname}`}</div>
-            <div>{props.driver.team}</div>
-            <div>{props.driver.code}</div>
-            <div className="bold">{props.driver.place + 1}. place</div>
+            <div>{`${firstname} ${lastname}`}</div>
+            <div>{team}</div>
+            <div className="bold">{place + 1}. place</div>
+            <div>{code}</div>
             <div>
                 <img
-                    alt={`Portrait from ${props.driver.firstname} ${props.driver.lastname}`}
+                    alt={`Portrait from ${firstname} ${lastname}`}
                     className='driver_portrait'
-                    src={`../../images/${props.driver.code.toLowerCase()}.png`}
+                    src={`../../images/portraits/${code.toLowerCase()}.png`}
                 />
             </div>
             <button
-                disabled={!props.driver.place}
+                disabled={!place}
                 onClick={() => {
-                    overtake(props.driver.id);
+                    overtake(id);
                 }}
             >
                 Overtake
             </button>
-
-
-
         </div>
     );
 }

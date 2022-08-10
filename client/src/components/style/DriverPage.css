@@ -1,3 +1,18 @@
+body {
+    background-color: #f0f8ff;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    text-align: center;
+    margin: 10px;
+}
+
 .drivers {
     display: flex;
     flex-wrap: wrap;
@@ -13,6 +28,7 @@
 }
 
 .driver {
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,5 +1,6 @@
 import DriverItem from './DriverItem';
 import React, { useState, useEffect } from 'react';
+import './style/DriverPage.css';
 
 
 const DriverPage = () => {
@@ -17,10 +18,16 @@ const DriverPage = () => {
 
     return (
         <>
-            <h1
-                className={"center"}
-            >DIGITAL THINKERS - Test Exercise
-            </h1>
+            <header
+            >
+                <img
+                    alt="Digital Thinkers Logo"
+                    src="../../images/DT_header.png"
+                />
+                <div>
+                    Test Exercise
+                </div>
+            </header>
             <div
                 className="drivers"
             >
@@ -32,6 +39,9 @@ const DriverPage = () => {
                     />
                 )}
             </div>
+            <footer>
+                Created By Benjamin Gégény
+            </footer>
         </>
     );
 }

@@ -16,8 +16,9 @@ let race: Driver[];
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
+    console.log('-----  INITIALIZING   -----')
     race = initRace();
-    console.log(' ----- NEW RACE BEGINS -----');
+    console.log('----- NEW RACE BEGINS -----');
 });
 
 app.get("/api/drivers", (req, res) => {
