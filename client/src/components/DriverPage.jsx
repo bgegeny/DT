@@ -33,7 +33,7 @@ const DriverPage = () => {
             >
                 {drivers.length && drivers.map((item) =>
                     <DriverItem
-                        onChange={() => getDrivers()}
+                        onChange={(race) => setDrivers(race)}
                         key={item.id}
                         driver={item}
                     />

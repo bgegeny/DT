@@ -3,7 +3,7 @@ import { Driver } from '../../../server/models/driver';
 
 interface IMyProps {
     driver: Driver;
-    onChange: () => void;
+    onChange: (race: Object) => void;
 }
 
 const DriverItem: React.FC<IMyProps> = (props: IMyProps) => {
@@ -18,12 +18,14 @@ const DriverItem: React.FC<IMyProps> = (props: IMyProps) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({driverId})
-        }).then((data) => {
-            if(!data.ok) {
+        }).then((res) => {
+            if(!res.ok) {
                 throw Error();
             }
-            props.onChange();
-        });
+            return res.json();
+        }).then((data) => {
+            props.onChange(data.race);
+        })
     }
 
     return (
