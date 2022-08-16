@@ -35,5 +35,6 @@ app.post("/api/drivers/overtake", (req, res) => {
 
     race = _.sortBy(race, function(driver) { return driver.place; })
 
-    res.sendStatus(200);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({race}));
 });
